@@ -1,0 +1,61 @@
+{
+  "raidJSON": {
+    "daily1620": "1620 카던 / 가르가디스",
+    "daily1580": "1580 카던 / 소나벨",
+    "challenge": "도전 가디언 / 도전 어비스",
+    "koukusaton": "쿠크세이튼",
+    "abrelshud": "아브렐슈드",
+    "illiakanNomal": "일리아칸 노말",
+    "kamenNomal": "카멘 노말",
+    "kayangelNomal": "카양겔 노말",
+    "ivoryTowerNomal": "상아탑 노말",
+    "echidnaNomal": "에키드나 노말",
+    "illiakanHard": "일리아칸 하드",
+    "kamenHard": "카멘 하드",
+    "kayangelHard": "카양겔 하드",
+    "ivoryTowerHard": "상아탑 하드",
+    "echidnaHard": "에키드나 하드"
+  },
+  "mainParty": [
+    { "nickname": "유녕칸", "level": 1620, "class": "브레이커" },
+    { "nickname": "아보카도오믈렛", "level": 1620, "class": "서머너" },
+    { "nickname": "Urochi", "level": 1620, "class": "소서리스" },
+    { "nickname": "쓸려온초록버섯", "level": 1620, "class": "바드" }
+  ],
+  "subParty": [
+    { "nickname": "유녕왕", "level": 1580, "class": "건슬링어" },
+    { "nickname": "고독한무말랭이", "level": 1580, "class": "워로드" },
+    { "nickname": "Erochi", "level": 1580, "class": "소서리스" },
+    { "nickname": "막내딸은미대생", "level": 1580, "class": "도화가" }
+  ],
+  "challengeParty": [
+    { "nickname": "유녕칸", "level": 1620, "class": "브레이커" },
+    { "nickname": "도도한솜사탕", "level": 1540, "class": "기상술사" },
+    { "nickname": "Urochi", "level": 1620, "class": "소서리스" },
+    { "nickname": "쓸려온초록버섯", "level": 1620, "class": "바드" }
+  ],
+  "exchangePartyList": [
+    [
+      { "nickname": "유녕칸", "level": 1620, "class": "브레이커" },
+      { "nickname": "타락한무말랭이", "level": 1540, "class": "블레이드" },
+      { "nickname": "Drochi", "level": 1540, "class": "도화가" },
+      { "nickname": "쓸려온뿔버섯", "level": 1520, "class": "창술사" }
+    ],
+    [
+      {
+        "nickname": "건슬인권운동가조윤영",
+        "level": 1540,
+        "class": "데빌헌터"
+      },
+      { "nickname": "아보카도오믈렛", "level": 1620, "class": "서머너" },
+      { "nickname": "Brochi", "level": 1475, "class": "소서리스" },
+      { "nickname": "쓸려온파란버섯", "level": 1540, "class": "바드" }
+    ],
+    [
+      { "nickname": "유녕킹", "level": 1540, "class": "아르카나" },
+      { "nickname": "도도한솜사탕", "level": 1540, "class": "기상술사" },
+      { "nickname": "Urochi", "level": 1620, "class": "소서리스" },
+      { "nickname": "쓸려온초록버섯", "level": 1620, "class": "바드" }
+    ]
+  ]
+}
