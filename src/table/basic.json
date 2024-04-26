@@ -1,13 +1,60 @@
 {
-  "Wed": {
-    "cube": false,
-    "raidList": [
-      "daily1620",
-      "daily1580",
-      "challenge",
-      "illiakanNomal",
-      "kayangelHard"
-    ]
-  },
-  "Sat": []
+  "weekInfo": [
+    {
+      "day": "수",
+      "rally": "20:00",
+      "cube": false,
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "daily1580", "party": "subParty" },
+        { "raid": "challenge", "party": "challengeParty" },
+        { "raid": "illiakanNomal", "party": "subParty" },
+        { "raid": "kayangelHard", "party": "subParty" }
+      ]
+    },
+    {
+      "day": "금",
+      "rally": "23:30",
+      "cube": true,
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "kamenNomal", "party": "mainParty" },
+        { "raid": "echidnaNomal", "party": "mainParty" },
+        { "raid": "ivoryTowerHard", "party": "mainParty" }
+      ]
+    },
+    {
+      "day": "토",
+      "rally": "12:00",
+      "cube": false,
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "daily1580", "party": "subParty" },
+        { "raid": "kamenNomal", "party": "mainParty" },
+        { "raid": "echidnaNomal", "party": "mainParty" },
+        { "raid": "ivoryTowerHard", "party": "mainParty" }
+      ]
+    },
+    {
+      "day": "일",
+      "rally": "12:00",
+      "cube": true,
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "daily1580", "party": "subParty" }
+      ]
+    },
+    {
+      "day": "월",
+      "rally": "21:30",
+      "cube": false,
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "abrelshud", "party": "subParty" },
+        { "raid": "koukusaton", "party": "koukuParty1" },
+        { "raid": "koukusaton", "party": "koukuParty2" },
+        { "raid": "koukusaton", "party": "koukuParty3" }
+      ]
+    }
+  ]
 }

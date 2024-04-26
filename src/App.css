@@ -1,1 +1,65 @@
+.character-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 23%;
+  aspect-ratio: 1 / 1;
+  background-color: beige;
+}
 
+.character-level {
+  font-size: 130%;
+}
+
+.character-class {
+  font-size: 80%;
+}
+
+.character-name {
+  font-size: 0.1vw;
+}
+
+.raid-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  padding: 5%;
+}
+
+.raid-name {
+  font-size: 1vw;
+}
+
+.raid-character-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.raid-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.daily-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18%;
+  margin: 1%;
+  font-size: 100%;
+  background-color: lightblue;
+}
+
+.weekly-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}

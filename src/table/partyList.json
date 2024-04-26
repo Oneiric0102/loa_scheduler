@@ -1,5 +1,5 @@
 {
-  "raidJSON": {
+  "raidList": {
     "daily1620": "1620 카던 / 가르가디스",
     "daily1580": "1580 카던 / 소나벨",
     "challenge": "도전 가디언 / 도전 어비스",
@@ -34,28 +34,22 @@
     { "nickname": "Urochi", "level": 1620, "class": "소서리스" },
     { "nickname": "쓸려온초록버섯", "level": 1620, "class": "바드" }
   ],
-  "exchangePartyList": [
-    [
-      { "nickname": "유녕칸", "level": 1620, "class": "브레이커" },
-      { "nickname": "타락한무말랭이", "level": 1540, "class": "블레이드" },
-      { "nickname": "Drochi", "level": 1540, "class": "도화가" },
-      { "nickname": "쓸려온뿔버섯", "level": 1520, "class": "창술사" }
-    ],
-    [
-      {
-        "nickname": "건슬인권운동가조윤영",
-        "level": 1540,
-        "class": "데빌헌터"
-      },
-      { "nickname": "아보카도오믈렛", "level": 1620, "class": "서머너" },
-      { "nickname": "Brochi", "level": 1475, "class": "소서리스" },
-      { "nickname": "쓸려온파란버섯", "level": 1540, "class": "바드" }
-    ],
-    [
-      { "nickname": "유녕킹", "level": 1540, "class": "아르카나" },
-      { "nickname": "도도한솜사탕", "level": 1540, "class": "기상술사" },
-      { "nickname": "Urochi", "level": 1620, "class": "소서리스" },
-      { "nickname": "쓸려온초록버섯", "level": 1620, "class": "바드" }
-    ]
+  "koukuParty1": [
+    { "nickname": "유녕칸", "level": 1620, "class": "브레이커" },
+    { "nickname": "타락한무말랭이", "level": 1540, "class": "블레이드" },
+    { "nickname": "Drochi", "level": 1540, "class": "도화가" },
+    { "nickname": "쓸려온뿔버섯", "level": 1520, "class": "창술사" }
+  ],
+  "koukuParty2": [
+    { "nickname": "유녕칸", "level": 1620, "class": "브레이커" },
+    { "nickname": "타락한무말랭이", "level": 1540, "class": "블레이드" },
+    { "nickname": "Drochi", "level": 1540, "class": "도화가" },
+    { "nickname": "쓸려온뿔버섯", "level": 1520, "class": "창술사" }
+  ],
+  "koukuParty3": [
+    { "nickname": "유녕칸", "level": 1620, "class": "브레이커" },
+    { "nickname": "타락한무말랭이", "level": 1540, "class": "블레이드" },
+    { "nickname": "Drochi", "level": 1540, "class": "도화가" },
+    { "nickname": "쓸려온뿔버섯", "level": 1520, "class": "창술사" }
   ]
 }
