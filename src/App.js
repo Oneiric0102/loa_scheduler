@@ -6,9 +6,6 @@ import Raid from "./component/Raid";
 import DailyTable from "./component/DailyTable";
 
 function App() {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isToday, setIsToday] = useState(true);
-  const raidInfo = { raid: "daily1620", party: "mainParty" };
   console.log(window.innerWidth);
   return (
     <div className="container">
