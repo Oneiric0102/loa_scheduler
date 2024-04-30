@@ -8,11 +8,11 @@ const WeeklyTableBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  @media (max-width: 1200px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
     align-items: center;
   }
-  margin: 1%;
+  margin: 1rem;
 `;
 
 export default function WeeklyTable() {
@@ -33,7 +33,6 @@ export default function WeeklyTable() {
     };
   }, []);
 
-  console.log(weekInfo);
   return (
     <WeeklyTableBox windowWidth={windowWidth}>
       {weekInfo.map((dayInfo, index) => {

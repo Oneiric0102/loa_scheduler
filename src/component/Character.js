@@ -9,21 +9,21 @@ const CharacterBox = styled.div`
   gap: 0.5rem;
 `;
 const CharacterName = styled.div`
-  font-size: 100%;
+  font-size: 1rem;
   font-weight: bold;
 `;
 const CharacterInfo = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 50%;
+  width: 100%;
   gap: 0.5rem;
 `;
 const CharacterLevel = styled.div`
-  font-size: 80%;
+  font-size: 0.8rem;
 `;
 const CharacterClass = styled.div`
-  font-size: 80%;
+  font-size: 0.8rem;
   white-space: nowrap;
 `;
 

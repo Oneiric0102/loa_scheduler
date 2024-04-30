@@ -9,7 +9,6 @@ function App() {
   console.log(window.innerWidth);
   return (
     <div className="container">
-      <div className="header"></div>
       <div className="body">
         <WeeklyTable />
       </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Raid from "./Raid";
 import styled from "@emotion/styled/macro";
 import {
@@ -13,9 +13,9 @@ const DailyTableBox = styled.div`
   justify-content: center;
   align-items: center;
   width: ${(props) => (props.windowWidth >= 1200 ? "18%" : "90%")};
-  font-size: 100%;
-  padding: 1%;
-  border-radius: 0.5vw;
+  font-size: 1rem;
+  padding: 0 0.2rem;
+  border-radius: 0.5rem;
   background-color: ${(props) =>
     props.isToday ? "rgba(224, 228, 237, 1)" : "transparent"};
 `;
@@ -24,8 +24,8 @@ const DayHeader = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
-  margin-bottom: 0.5rem;
+  width: calc(100% - 1rem);
+  margin: 0.5rem;
 `;
 
 const DayInfo = styled.div`
@@ -33,18 +33,18 @@ const DayInfo = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: calc(100% - 2rem);
 `;
 
 const Rally = styled.div`
-  font-size: 100%;
+  font-size: 1rem;
   font-weight: bold;
   color: ${(props) =>
     props.isToday ? "rgba(59, 130, 246, 1)" : "rgba(122, 134, 153, 1)"};
 `;
 
 const Day = styled.div`
-  font-size: 100%;
+  font-size: 1rem;
   font-weight: bold;
   color: ${(props) =>
     props.isToday ? "rgba(59, 130, 246, 1)" : "rgba(122, 134, 153, 1)"};
@@ -116,14 +116,40 @@ const returnFoldButtonIcon = (
 
 export default function DailyTable({ dayInfo, windowWidth }) {
   const [dailyTableState, setDailyTableState] = useState("normal");
+  const [isMobile, setIsMobile] = useState(false);
   const isToday = dayInfo.day == new Date().getDay();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1000) {
+        setIsMobile(false);
+      } else if (window.innerWidth < 1000) {
+        setIsMobile(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isMobile === false) {
+      setDailyTableState("normal");
+    } else if (isMobile === true) {
+      setDailyTableState("fold");
+    }
+  }, [isMobile]);
+
   return (
     <DailyTableBox isToday={isToday}>
       <DayHeader>
         {returnFoldButtonIcon(
           dailyTableState,
           isToday ? "rgba(59, 130, 246, 1)" : "rgba(122, 134, 153, 1)",
-          "15%",
+          "2rem",
           setDailyTableState
         )}
         <DayInfo>

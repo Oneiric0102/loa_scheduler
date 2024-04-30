@@ -5,21 +5,31 @@ import styled from "@emotion/styled/macro";
 const RaidBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 1rem);
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0px 1px 3px 0px rgba(96, 108, 128, 0.05);
-  margin-top: 1rem;
-  border-radius: 0.5vw;
+  margin-top: ${({ dailyTableState }) =>
+    dailyTableState === "fold" ? "0" : "1rem"};
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-height: ${({ dailyTableState }) =>
+    dailyTableState === "fold"
+      ? "0"
+      : dailyTableState === "simple"
+      ? "3.4375rem"
+      : "19.9375rem"};
 `;
 
 const RaidName = styled.div`
-  font-size: 120%;
-  width: 80%;
+  font-size: 1.2rem;
+  width: calc(100% - 4rem);
   font-weight: bold;
   white-space: nowrap;
-  padding: 5% 10%;
+  padding: 0 1rem;
+  margin: 1rem;
 `;
 
 const RaidCharacterBox = styled.div`
@@ -28,11 +38,11 @@ const RaidCharacterBox = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(242, 244, 247, 1);
-  border-radius: 0.5vw;
-  width: 80%;
+  border-radius: 0.5rem;
+  width: calc(100% - 4rem);
   gap: 1rem;
-  padding: 5%;
-  margin: 0 5% 5% 5%;
+  padding: 1rem;
+  margin: 0 1rem 1rem 1rem;
 `;
 
 export default function Raid({ raidInfo, dailyTableState }) {
@@ -40,20 +50,14 @@ export default function Raid({ raidInfo, dailyTableState }) {
   const raidName = partyListJSON.raidList[raidInfo.raid];
   const partyList = partyListJSON[raidInfo.party];
 
-  return dailyTableState == "fold" ? (
-    <></>
-  ) : (
-    <RaidBox>
+  return (
+    <RaidBox dailyTableState={dailyTableState}>
       <RaidName>{raidName}</RaidName>
-      {dailyTableState == "simple" ? (
-        <></>
-      ) : (
-        <RaidCharacterBox isOpen={true}>
-          {partyList.map((characterInfo, index) => (
-            <Character key={index} characterInfo={characterInfo} />
-          ))}
-        </RaidCharacterBox>
-      )}
+      <RaidCharacterBox dailyTableState={dailyTableState}>
+        {partyList.map((characterInfo, index) => (
+          <Character key={index} characterInfo={characterInfo} />
+        ))}
+      </RaidCharacterBox>
     </RaidBox>
   );
 }
