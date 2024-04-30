@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/loa_scheduler/static/css/main.12c9db82.css",
+    "main.js": "/loa_scheduler/static/js/main.9aed6121.js",
+    "static/js/453.2f4e9aa8.chunk.js": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js",
+    "index.html": "/loa_scheduler/index.html",
+    "main.12c9db82.css.map": "/loa_scheduler/static/css/main.12c9db82.css.map",
+    "main.9aed6121.js.map": "/loa_scheduler/static/js/main.9aed6121.js.map",
+    "453.2f4e9aa8.chunk.js.map": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.12c9db82.css",
+    "static/js/main.9aed6121.js"
+  ]
+}
