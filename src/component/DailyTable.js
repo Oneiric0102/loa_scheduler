@@ -116,7 +116,9 @@ const returnFoldButtonIcon = (
 
 export default function DailyTable({ dayInfo, windowWidth }) {
   const [dailyTableState, setDailyTableState] = useState("normal");
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    window.innerWidth >= 1000 ? false : true
+  );
   const isToday = dayInfo.day == new Date().getDay();
 
   useEffect(() => {

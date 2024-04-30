@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import partyListJSON from "../table/partyList.json";
 import Character from "./Character";
 import styled from "@emotion/styled/macro";
@@ -21,6 +22,10 @@ const RaidBox = styled.div`
       : dailyTableState === "simple"
       ? "3.4375rem"
       : "19.9375rem"};
+
+  &.initial {
+    transition: none;
+  }
 `;
 
 const RaidName = styled.div`
@@ -50,8 +55,22 @@ export default function Raid({ raidInfo, dailyTableState }) {
   const raidName = partyListJSON.raidList[raidInfo.raid];
   const partyList = partyListJSON[raidInfo.party];
 
+  const [initialized, setInitialized] = useState(false);
+
+  useEffect(() => {
+    // 페이지가 로드되고 1초 뒤에 초기화 상태를 변경하여 트랜지션 효과가 있는 CSS 클래스가 적용되도록 함
+    const timer = setTimeout(() => {
+      setInitialized(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <RaidBox dailyTableState={dailyTableState}>
+    <RaidBox
+      dailyTableState={dailyTableState}
+      className={initialized ? "" : "initial"}
+    >
       <RaidName>{raidName}</RaidName>
       <RaidCharacterBox dailyTableState={dailyTableState}>
         {partyList.map((characterInfo, index) => (
