@@ -15,9 +15,12 @@ const DailyTableBox = styled.div`
   width: ${(props) =>
     props.windowWidth >= 1200
       ? `calc(${String(100 / props.weekLength)} - 0.5rem)`
-      : "90%"};
+      : "calc(100% - 1rem)"};
   font-size: 1rem;
-  padding: 0 0.25rem;
+  padding: ${(props) =>
+    props.dailyTableState === "fold"
+      ? "0 0.25rem"
+      : "0 0.25rem 0.75rem 0.25rem"};
   border-radius: 0.5rem;
   background-color: ${(props) =>
     props.isToday ? "rgba(224, 228, 237, 1)" : "transparent"};
@@ -149,7 +152,11 @@ export default function DailyTable({ dayInfo, weekLength }) {
   }, [isMobile]);
 
   return (
-    <DailyTableBox isToday={isToday} weekLength={weekLength}>
+    <DailyTableBox
+      isToday={isToday}
+      weekLength={weekLength}
+      dailyTableState={dailyTableState}
+    >
       <DayHeader>
         {returnFoldButtonIcon(
           dailyTableState,

@@ -17,4 +17,5 @@ body {
   background-color: rgba(233, 235, 240, 1);
   font-family: "Pretendard-Regular", "Pretendard-Local";
   user-select: none;
+  overflow: scroll;
 }
