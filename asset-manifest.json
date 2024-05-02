@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/loa_scheduler/static/css/main.12c9db82.css",
-    "main.js": "/loa_scheduler/static/js/main.4cfce940.js",
+    "main.css": "/loa_scheduler/static/css/main.1f9f35c2.css",
+    "main.js": "/loa_scheduler/static/js/main.e305c26b.js",
     "static/js/453.2f4e9aa8.chunk.js": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js",
+    "static/media/PretendardVariable.ttf": "/loa_scheduler/static/media/PretendardVariable.c89dc775feed56569658.ttf",
     "index.html": "/loa_scheduler/index.html",
-    "main.12c9db82.css.map": "/loa_scheduler/static/css/main.12c9db82.css.map",
-    "main.4cfce940.js.map": "/loa_scheduler/static/js/main.4cfce940.js.map",
+    "main.1f9f35c2.css.map": "/loa_scheduler/static/css/main.1f9f35c2.css.map",
+    "main.e305c26b.js.map": "/loa_scheduler/static/js/main.e305c26b.js.map",
     "453.2f4e9aa8.chunk.js.map": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.12c9db82.css",
-    "static/js/main.4cfce940.js"
+    "static/css/main.1f9f35c2.css",
+    "static/js/main.e305c26b.js"
   ]
 }
