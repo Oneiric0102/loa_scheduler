@@ -12,9 +12,12 @@ const DailyTableBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: ${(props) => (props.windowWidth >= 1200 ? "18%" : "90%")};
+  width: ${(props) =>
+    props.windowWidth >= 1200
+      ? `calc(${String(100 / props.weekLength)} - 0.5rem)`
+      : "90%"};
   font-size: 1rem;
-  padding: 0 0.2rem;
+  padding: 0 0.25rem;
   border-radius: 0.5rem;
   background-color: ${(props) =>
     props.isToday ? "rgba(224, 228, 237, 1)" : "transparent"};
@@ -114,7 +117,7 @@ const returnFoldButtonIcon = (
     );
 };
 
-export default function DailyTable({ dayInfo, windowWidth }) {
+export default function DailyTable({ dayInfo, weekLength }) {
   const [dailyTableState, setDailyTableState] = useState("normal");
   const [isMobile, setIsMobile] = useState(
     window.innerWidth >= 1000 ? false : true
@@ -146,7 +149,7 @@ export default function DailyTable({ dayInfo, windowWidth }) {
   }, [isMobile]);
 
   return (
-    <DailyTableBox isToday={isToday}>
+    <DailyTableBox isToday={isToday} weekLength={weekLength}>
       <DayHeader>
         {returnFoldButtonIcon(
           dailyTableState,

@@ -15,7 +15,7 @@
     {
       "day": 5,
       "rally": "23:30",
-      "cube": true,
+      "cube": false,
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
         { "raid": "kamenNomal", "party": "mainParty" },
@@ -26,13 +26,10 @@
     {
       "day": 6,
       "rally": "12:00",
-      "cube": false,
+      "cube": true,
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
-        { "raid": "daily1580", "party": "subParty" },
-        { "raid": "kamenNomal", "party": "mainParty" },
-        { "raid": "echidnaNomal", "party": "mainParty" },
-        { "raid": "ivoryTowerHard", "party": "mainParty" }
+        { "raid": "daily1580", "party": "subParty" }
       ]
     },
     {

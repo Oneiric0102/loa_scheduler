@@ -1,9 +1,5 @@
-import { useState } from "react";
 import "./App.css";
-import HeaderButton from "./component/HeaderButton";
 import WeeklyTable from "./component/WeeklyTable";
-import Raid from "./component/Raid";
-import DailyTable from "./component/DailyTable";
 
 function App() {
   console.log(window.innerWidth);

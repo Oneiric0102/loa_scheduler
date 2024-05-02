@@ -11,6 +11,7 @@ const CharacterBox = styled.div`
 const CharacterName = styled.div`
   font-size: 1rem;
   font-weight: bold;
+  color: #606c80;
 `;
 const CharacterInfo = styled.div`
   display: flex;
@@ -21,10 +22,12 @@ const CharacterInfo = styled.div`
 `;
 const CharacterLevel = styled.div`
   font-size: 0.8rem;
+  color: #606c80;
 `;
 const CharacterClass = styled.div`
   font-size: 0.8rem;
   white-space: nowrap;
+  color: #606c80;
 `;
 
 export default function Character({ characterInfo }) {

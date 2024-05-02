@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import weekInfoJSON from "../table/basic.json";
+import weekInfoJSON from "../table/odd.json";
 import DailyTable from "./DailyTable";
 import styled from "@emotion/styled/macro";
 
@@ -17,27 +16,16 @@ const WeeklyTableBox = styled.div`
 
 export default function WeeklyTable() {
   const weekInfo = weekInfoJSON.weekInfo;
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    // 윈도우 크기 변경 이벤트 리스너 등록
-    window.addEventListener("resize", handleResize);
-
-    // 컴포넌트가 언마운트되면 이벤트 리스너 제거
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   return (
-    <WeeklyTableBox windowWidth={windowWidth}>
+    <WeeklyTableBox>
       {weekInfo.map((dayInfo, index) => {
         return (
-          <DailyTable key={index} dayInfo={dayInfo} windowWidth={windowWidth} />
+          <DailyTable
+            key={index}
+            dayInfo={dayInfo}
+            weekLength={weekInfo.length}
+          />
         );
       })}
     </WeeklyTableBox>

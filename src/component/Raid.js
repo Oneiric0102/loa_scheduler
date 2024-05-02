@@ -35,6 +35,7 @@ const RaidName = styled.div`
   white-space: nowrap;
   padding: 0 1rem;
   margin: 1rem;
+  color: 1F2633;
 `;
 
 const RaidCharacterBox = styled.div`
