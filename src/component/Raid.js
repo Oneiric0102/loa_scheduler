@@ -21,7 +21,7 @@ const RaidBox = styled.div`
       ? "0"
       : dailyTableState === "simple"
       ? "3.4375rem"
-      : "19.9375rem"};
+      : "40rem"};
 
   &.initial {
     transition: none;
