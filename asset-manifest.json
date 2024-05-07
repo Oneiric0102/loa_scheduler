@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/loa_scheduler/static/css/main.4f47a20b.css",
-    "main.js": "/loa_scheduler/static/js/main.643f2dbb.js",
+    "main.js": "/loa_scheduler/static/js/main.34837c5c.js",
     "static/js/453.2f4e9aa8.chunk.js": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js",
     "static/media/PretendardVariable.ttf": "/loa_scheduler/static/media/PretendardVariable.c89dc775feed56569658.ttf",
     "index.html": "/loa_scheduler/index.html",
     "main.4f47a20b.css.map": "/loa_scheduler/static/css/main.4f47a20b.css.map",
-    "main.643f2dbb.js.map": "/loa_scheduler/static/js/main.643f2dbb.js.map",
+    "main.34837c5c.js.map": "/loa_scheduler/static/js/main.34837c5c.js.map",
     "453.2f4e9aa8.chunk.js.map": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4f47a20b.css",
-    "static/js/main.643f2dbb.js"
+    "static/js/main.34837c5c.js"
   ]
 }
