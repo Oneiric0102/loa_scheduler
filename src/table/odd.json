@@ -1,30 +1,52 @@
 {
   "weekInfo": [
     {
+      "day": 3,
+      "rally": "20:30",
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "challenge", "party": "challengeParty" },
+        { "raid": "kayangelHard", "party": "subParty" }
+      ]
+    },
+    {
+      "day": 4,
+      "rally": "22:00",
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "cube", "party": "undetermined" }
+      ]
+    },
+    {
       "day": 5,
-      "rally": "23:30",
-      "cube": true,
+      "rally": "21:30",
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
         { "raid": "kamenNomal", "party": "mainParty" },
         { "raid": "echidnaNomal", "party": "mainParty" },
-        { "raid": "ivoryTowerHard", "party": "mainParty" },
-        { "raid": "challenge", "party": "challengeParty" }
+        { "raid": "ivoryTowerHard", "party": "mainParty" }
       ]
     },
     {
       "day": 6,
-      "rally": "12:00",
-      "cube": false,
+      "rally": "22:30",
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
         { "raid": "daily1580", "party": "subParty" },
         { "raid": "illiakanNomal", "party": "subParty" },
-        { "raid": "kayangelHard", "party": "subParty" },
         { "raid": "abrelshud", "party": "subParty" },
         { "raid": "koukusaton", "party": "koukuParty1" },
         { "raid": "koukusaton", "party": "koukuParty2" },
         { "raid": "koukusaton", "party": "koukuParty3" }
+      ]
+    },
+    {
+      "day": 0,
+      "rally": "20:00",
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "daily1580", "party": "subParty" },
+        { "raid": "cube", "party": "undetermined" }
       ]
     }
   ]

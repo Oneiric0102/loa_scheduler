@@ -14,7 +14,8 @@
     "kamenHard": "카멘 하드",
     "kayangelHard": "카양겔 하드",
     "ivoryTowerHard": "상아탑 하드",
-    "echidnaHard": "에키드나 하드"
+    "echidnaHard": "에키드나 하드",
+    "cube": "큐브"
   },
   "mainParty": [
     { "nickname": "유녕칸", "level": 1620, "class": "브레이커" },

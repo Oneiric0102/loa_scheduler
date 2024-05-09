@@ -3,7 +3,6 @@
     {
       "day": 3,
       "rally": "20:00",
-      "cube": false,
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
         { "raid": "daily1580", "party": "subParty" },
@@ -15,7 +14,6 @@
     {
       "day": 5,
       "rally": "23:30",
-      "cube": false,
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
         { "raid": "kamenNomal", "party": "mainParty" },
@@ -26,7 +24,6 @@
     {
       "day": 6,
       "rally": "12:00",
-      "cube": true,
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
         { "raid": "daily1580", "party": "subParty" }
@@ -35,7 +32,6 @@
     {
       "day": 0,
       "rally": "12:00",
-      "cube": true,
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
         { "raid": "daily1580", "party": "subParty" }
@@ -44,7 +40,6 @@
     {
       "day": 1,
       "rally": "21:30",
-      "cube": false,
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
         { "raid": "abrelshud", "party": "subParty" },

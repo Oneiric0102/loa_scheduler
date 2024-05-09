@@ -54,7 +54,8 @@ const RaidCharacterBox = styled.div`
 export default function Raid({ raidInfo, dailyTableState }) {
   //json 파일로부터 데이터를 받아 와 초기화
   const raidName = partyListJSON.raidList[raidInfo.raid];
-  const partyList = partyListJSON[raidInfo.party];
+  const partyList =
+    raidInfo.party === "undetermined" ? null : partyListJSON[raidInfo.party];
 
   const [initialized, setInitialized] = useState(false);
 
@@ -73,11 +74,15 @@ export default function Raid({ raidInfo, dailyTableState }) {
       className={initialized ? "" : "initial"}
     >
       <RaidName>{raidName}</RaidName>
-      <RaidCharacterBox dailyTableState={dailyTableState}>
-        {partyList.map((characterInfo, index) => (
-          <Character key={index} characterInfo={characterInfo} />
-        ))}
-      </RaidCharacterBox>
+      {partyList !== null ? (
+        <RaidCharacterBox dailyTableState={dailyTableState}>
+          {partyList.map((characterInfo, index) => (
+            <Character key={index} characterInfo={characterInfo} />
+          ))}
+        </RaidCharacterBox>
+      ) : (
+        <></>
+      )}
     </RaidBox>
   );
 }
