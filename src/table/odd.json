@@ -11,7 +11,7 @@
       ]
     },
     {
-      "day": 5,
+      "day": 4,
       "rally": "20:00",
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "day": 1,
+      "day": 5,
       "rally": "20:00",
       "scheduleList": [
         { "raid": "daily1620", "party": "mainParty" },
@@ -30,6 +30,31 @@
         { "raid": "koukusaton", "party": "koukuParty2" },
         { "raid": "koukusaton", "party": "koukuParty3" }
       ]
+    },
+    {
+      "day": 6,
+      "rally": "20:00",
+      "scheduleList": []
+    },
+    {
+      "day": 0,
+      "rally": "20:00",
+      "scheduleList": [
+        { "raid": "daily1620", "party": "mainParty" },
+        { "raid": "challenge", "party": "challengeParty" },
+        { "raid": "illiakanNomal", "party": "subParty" },
+        { "raid": "kayangelHard", "party": "subParty" }
+      ]
+    },
+    {
+      "day": 1,
+      "rally": "20:00",
+      "scheduleList": []
+    },
+    {
+      "day": 2,
+      "rally": "20:00",
+      "scheduleList": []
     }
   ]
 }
