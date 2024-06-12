@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 import Raid from "./Raid";
 import styled from "@emotion/styled/macro";
-import {
-  MdOutlineKeyboardArrowUp,
-  MdOutlineKeyboardDoubleArrowUp,
-  MdOutlineKeyboardArrowDown,
-} from "react-icons/md";
 import { IoIosAdd } from "react-icons/io";
 import DayButton from "./DayButton";
 import RandomAlterImg from "./RandomAlterImg";
@@ -100,19 +95,7 @@ export default function DailyTable({ dayInfo, weekLength, isMobile }) {
         </DayInfo>
         <IoIosAdd />
       </DayHeader>
-      {dayInfo.scheduleList.length > 0 ? (
-        dayInfo.scheduleList.map((raidInfo, index) => {
-          return (
-            <Raid
-              key={index}
-              raidInfo={raidInfo}
-              dailyTableState={dailyTableState}
-            />
-          );
-        })
-      ) : (
-        <RandomAlterImg />
-      )}
+      <RandomAlterImg />
     </DailyTableBox>
   );
 }

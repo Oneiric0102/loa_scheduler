@@ -3,7 +3,7 @@ import styled from "@emotion/styled/macro";
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnCenter};
   gap: 1rem;
-  ${(props) => (props.isMobile ? "cursor: pointer" : null)};
+  cursor: pointer;
 `;
 
 const Day = styled.div`

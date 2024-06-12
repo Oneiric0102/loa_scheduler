@@ -3,6 +3,9 @@ import DailyTable from "../components/DailyTable";
 import styled from "@emotion/styled/macro";
 import DayButton from "../components/DayButton";
 import { useEffect, useState } from "react";
+import { collection, query } from "firebase/firestore";
+import { db } from "../firebase";
+import { useSnapshot } from "../hooks/useSnapshot";
 
 const WeeklyTableBox = styled.div`
   display: grid;
@@ -22,14 +25,15 @@ const DayButtonDiv = styled.div`
 `;
 
 export default function ScheduleTable() {
-  const weekInfo = weekInfoJSON.weekInfo;
+  const scheduleQuery = query(collection(db, "schedule"));
+  const schedule = useSnapshot(scheduleQuery);
   const [selected, setSelected] = useState(new Date().getDay());
   const [isMobile, setIsMobile] = useState(
     window.innerWidth >= 1000 ? false : true
   );
-  const [schedules, setSchedules] = useState([]);
+  const [scheduleList, setScheduleList] = useState([]);
 
-  //¹ÝÀÀÇü À¥ ±¸ÇöÀ» À§ÇØ È­¸éÀÇ ³Êºñ¸¦ Ã¼Å©
+  //ëª¨ë°”ì¼ë²„ì „ ì²´í¬ ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ë“±ë¡
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1000) {
@@ -46,8 +50,20 @@ export default function ScheduleTable() {
     };
   }, []);
 
+  useEffect(() => {
+    setScheduleList(
+      schedule.sort((a, b) => {
+        const aMod = (a.day + 4) % 7;
+        const bMod = (b.day + 4) % 7;
+        return aMod - bMod;
+      })
+    );
+  }, [schedule]);
+
   const onClickDay = (day) => {
-    setSelected(day);
+    if (isMobile) {
+      setSelected(day);
+    }
   };
 
   return (
@@ -100,16 +116,17 @@ export default function ScheduleTable() {
       ) : null}
 
       <WeeklyTableBox>
-        {weekInfo.map((dayInfo, index) => {
-          return (
-            <DailyTable
-              key={index}
-              dayInfo={dayInfo}
-              weekLength={weekInfo.length}
-              isMobile={isMobile}
-            />
-          );
-        })}
+        {schedule.length > 0
+          ? schedule.map((dayInfo) => {
+              return (
+                <DailyTable
+                  key={dayInfo.day}
+                  dayInfo={dayInfo}
+                  isMobile={isMobile}
+                />
+              );
+            })
+          : null}
       </WeeklyTableBox>
     </>
   );

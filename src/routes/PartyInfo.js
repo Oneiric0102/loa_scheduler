@@ -1,12 +1,13 @@
 import styled from "@emotion/styled/macro";
 import RowScroll from "../components/RowScroll";
 import { MdAddCircle } from "react-icons/md";
-import { collection, orderBy, query } from "firebase/firestore";
+import { collection, doc, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase";
 import { useSnapshot } from "../hooks/useSnapshot";
 import Player from "../components/Player";
 import useModals from "../hooks/useModals";
 import { modals } from "../components/Modals";
+import Party from "../components/Party";
 
 const TitleDiv = styled.div`
   ${(props) => props.theme.flex.rowBetweenCenter};
@@ -42,8 +43,8 @@ const Icon = styled.div`
 `;
 
 export default function PartyInfo() {
-  const partyQuery = query(collection(db, "parties"), orderBy("createdAt"));
-  const party = useSnapshot(partyQuery);
+  const partiesQeury = query(collection(db, "parties"), orderBy("createdAt"));
+  const parties = useSnapshot(partiesQeury);
 
   const playersQuery = query(collection(db, "players"), orderBy("createdAt"));
   const players = useSnapshot(playersQuery);
@@ -51,14 +52,16 @@ export default function PartyInfo() {
   const { openModal } = useModals();
 
   const addPlayer = () => {
+    const characterRef = collection(db, "temp");
+    const docRef = doc(characterRef);
     openModal(modals.player, {
       player: { name: "" },
       characters: [
         {
           nickname: "",
           level: "",
-          class: "",
-          id: -1,
+          class: "버서커",
+          id: docRef.id,
           registered: false,
         },
       ],
@@ -66,8 +69,19 @@ export default function PartyInfo() {
   };
 
   const addParty = () => {
+    const characterRef = collection(db, "temp");
+    const docRef = doc(characterRef);
     openModal(modals.party, {
       players: players,
+      party: { name: "" },
+      participants: [
+        {
+          characterId: "",
+          id: docRef.id,
+          registered: false,
+          owner: "",
+        },
+      ],
     });
   };
 
@@ -81,8 +95,10 @@ export default function PartyInfo() {
       </SubTitle>
 
       <RowScroll>
-        {party.length > 0 ? (
-          <div>파티정보</div>
+        {parties.length > 0 ? (
+          parties.map((party) => {
+            return <Party players={players} party={party} key={party.id} />;
+          })
         ) : (
           <NullDiv>파티 정보가 없습니다.</NullDiv>
         )}

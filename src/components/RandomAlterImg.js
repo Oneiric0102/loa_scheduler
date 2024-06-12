@@ -11,6 +11,7 @@ import image9 from "../asset/09_씨익콩.png";
 import image10 from "../asset/10_더줘콩.png";
 import image11 from "../asset/11_뿅콩.png";
 import image12 from "../asset/12_감사콩.png";
+import { useMemo } from "react";
 
 const AlterImg = styled.img`
   width: 50%;
@@ -31,6 +32,9 @@ export default function RandomAlterImg() {
     image11,
     image12,
   ];
+  const index = useMemo(() => {
+    return Math.floor(Math.random() * images.length);
+  }, [images.length]);
 
-  return <AlterImg src={images[Math.floor(Math.random() * images.length)]} />;
+  return <AlterImg src={images[index]} />;
 }

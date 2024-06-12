@@ -8,24 +8,21 @@ const RowScrollDiv = styled.div`
   margin: 1rem 0;
   padding: 1rem 0;
   &::-webkit-scrollbar {
-    height: 0.5rem; /* 스크롤바의 높이 */
+    height: 0.2rem;
   }
 
   &::-webkit-scrollbar-track {
-    background: ${(props) =>
-      props.theme.colors.scrollTrack}; /* 스크롤바 트랙의 배경색 */
-    border-radius: 0.25rem;
+    background: ${(props) => props.theme.colors.scrollTrack};
+    border-radius: 0.1rem;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: ${(props) =>
-      props.theme.colors.scrollThumb}; /* 스크롤바 썸의 배경색 */
-    border-radius: 0.25rem;
+    background: ${(props) => props.theme.colors.scrollThumb};
+    border-radius: 0.1rem;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: ${(props) =>
-      props.theme.colors.primary40}; /* 스크롤바 썸에 호버될 때의 배경색 */
+    background: ${(props) => props.theme.colors.primary40};
   }
 `;
 

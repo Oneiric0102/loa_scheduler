@@ -1,7 +1,7 @@
 import styled from "@emotion/styled/macro";
 import CharacterInput from "./CharacterInput";
 import { MdAddCircle } from "react-icons/md";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { db } from "../firebase";
 import {
@@ -14,7 +14,10 @@ import {
   getDoc,
   addDoc,
   writeBatch,
+  orderBy,
 } from "firebase/firestore";
+import { debounce } from "lodash";
+import { useSnapshot } from "../hooks/useSnapshot";
 
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnLeftCenter};
@@ -29,7 +32,7 @@ const SubTitle = styled.h2`
   color: ${(props) => props.theme.colors.primaryText};
 `;
 const CustomInput = styled.input`
-  width: calc(100% - 1rem);
+  width: calc(100% - 1.25rem);
   border: 2px solid
     ${(props) => (props.warning ? props.theme.colors.delete : "transparent")};
   background-color: ${(props) => props.theme.colors.surface};
@@ -96,25 +99,47 @@ const Warning = styled.div`
 const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
   const [characterList, setCharacterList] = useState([]);
   const [deleteList, setDeleteList] = useState([]);
-  const [addCount, setAddCount] = useState(0);
   const [playerName, setPlayerName] = useState(player.name);
+  const [error, setError] = useState("");
+  const playersRef = collection(db, "players");
+
+  const classQuery = query(
+    collection(db, "classes"),
+    orderBy("groupCD"),
+    orderBy("createdAt")
+  );
+  const classList = useSnapshot(classQuery);
+
+  //모달 외의 스크롤 방지
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   //캐릭터 추가 버튼
   const addCharacterInput = () => {
+    let charactersRef = null;
+    if (playerName === "") {
+      charactersRef = collection(db, "temp");
+    } else {
+      charactersRef = collection(player.ref, "characters");
+    }
+    const docRef = doc(charactersRef);
     setCharacterList((current) => [
       ...current,
       {
         nickname: "",
         level: "",
-        class: "",
-        id: addCount,
+        class: "버서커",
+        id: docRef.id,
         registered: false,
       },
     ]);
-    setAddCount((current) => current + 1);
   };
 
-  //캐릭터 삭제 버튼
+  //캐릭터 삭제 콜백함수
   const delCharacterInput = (id, registered, beDelete) => {
     if (registered) {
       if (beDelete) {
@@ -140,15 +165,43 @@ const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
     setCharacterList(addedRegister);
   }, []);
 
+  //플레이어 추가일 경우 이름 체크하는 함수
+  const checkNameDuplication = async (name) => {
+    const playerQuery = query(playersRef, where("name", "==", name));
+    const querySnapshot = await getDocs(playerQuery);
+    if (!querySnapshot.empty && player.name !== name) {
+      setError("이미 존재하는 플레이어 이름입니다.");
+    } else {
+      setError("");
+    }
+  };
+
+  const debounceCheck = useCallback(
+    debounce((name) => checkNameDuplication(name), 500),
+    []
+  );
+
+  //플레이어 이름 변경시 유효성 확인
+  useEffect(() => {
+    if (playerName === "") {
+      setError("플레이어 이름을 입력해주세요");
+    } else {
+      debounceCheck(playerName);
+    }
+
+    return () => {
+      debounceCheck.cancel();
+    };
+  }, [playerName, debounceCheck]);
+
   //플레이어 추가일 경우 players 컬렉션에 문서를 추가
   const addPlayer = async () => {
-    const playersRef = collection(db, "players");
     await addDoc(playersRef, { name: playerName, createdAt: new Date() });
   };
 
   //submit시 발동 될 firebase store 업데이트 함수
   const updateCharacter = async () => {
-    if (playerName === "") {
+    if (error !== "") {
       return;
     }
 
@@ -156,15 +209,9 @@ const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
 
     if (player.name === "") {
       addPlayer();
-      playerQuery = query(
-        collection(db, "players"),
-        where("name", "==", playerName)
-      );
+      playerQuery = query(playersRef, where("name", "==", playerName));
     } else {
-      playerQuery = query(
-        collection(db, "players"),
-        where("name", "==", player.name)
-      );
+      playerQuery = query(playersRef, where("name", "==", player.name));
     }
 
     let playerSnapshot = (await getDocs(playerQuery)).docs;
@@ -177,7 +224,7 @@ const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
       updateDoc(playerDocRef, { name: playerName });
 
       for (const character of characterList) {
-        const characterId = String(character.id);
+        const characterId = character.id;
         let characterDocRef = doc(charactersRef, characterId);
         let characterDoc = await getDoc(characterDocRef);
         //공백체크
@@ -210,8 +257,7 @@ const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
             console.log(characterDocRef);
           } else {
             // 문서가 존재하지 않으면 새 문서 생성
-            characterDocRef = doc(charactersRef); // 자동으로 랜덤 ID를 생성함
-            characterDoc = await getDoc(characterDocRef);
+            characterDocRef = doc(charactersRef, characterId);
             batch.set(characterDocRef, data);
             console.log("문서 ID가 존재하지 않아 새 문서가 생성되었습니다.");
           }
@@ -231,7 +277,7 @@ const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
   };
 
   const handleSubmit = (e) => {
-    if (playerName === "") {
+    if (error !== "") {
       e.preventDefault();
       return;
     }
@@ -244,12 +290,11 @@ const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
       <SubTitle>플레이어</SubTitle>
       <CustomInput
         value={playerName}
-        onChange={(e) => setPlayerName(e.target.value)}
-        warning={playerName === ""}
+        onChange={(e) => setPlayerName(e.currentTarget.value)}
+        warning={error.length > 0}
+        placeholder={player.name}
       />
-      {playerName === "" ? (
-        <Warning>플레이어 이름을 입력해주세요.</Warning>
-      ) : null}
+      {error.length > 0 ? <Warning>{error}</Warning> : null}
       <SubTitle>
         캐릭터 목록
         <Icon onClick={addCharacterInput}>
@@ -272,6 +317,7 @@ const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
                   characterInfo={characterInfo}
                   delCharacterInput={delCharacterInput}
                   key={characterInfo.id}
+                  classList={classList}
                 />
               );
             })

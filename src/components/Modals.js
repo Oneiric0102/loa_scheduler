@@ -24,7 +24,8 @@ const modalStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    maxWidth: "24rem",
+    width: "40rem",
+    maxWidth: "80%",
     overflowY: "hidden",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
@@ -40,7 +41,7 @@ const ModalInner = styled.form`
   max-height: ${(props) => props.maxHeight};
   padding: 0.5rem;
   &::-webkit-scrollbar {
-    width: 0.5rem; /* 스크롤바의 높이 */
+    width: 0.2rem; /* 스크롤바의 높이 */
   }
 
   &::-webkit-scrollbar-track {
