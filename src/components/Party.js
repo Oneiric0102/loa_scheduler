@@ -11,11 +11,12 @@ import { modals } from "./Modals";
 import { db } from "../firebase";
 import CharactersBox from "./CharactersBox";
 import { useEffect, useState } from "react";
+import { usePartyInfo } from "../hooks/usePartyInfo";
 
 export default function Party({ players, party }) {
   const participantsQuery = query(collection(party.ref, "participants"));
   const participants = useSnapshot(participantsQuery);
-  const [participantList, setParticipantList] = useState([]);
+  const participantList = usePartyInfo(participants);
 
   const modalProps = {
     players: players,
@@ -28,42 +29,6 @@ export default function Party({ players, party }) {
       deleteDoc(doc(db, "parties", party.id));
     }
   };
-
-  const getParticipantInfo = async (playerId, characterId) => {
-    console.log(playerId);
-    console.log(characterId);
-    const characterDocRef = doc(
-      db,
-      "players",
-      playerId,
-      "characters",
-      characterId
-    );
-
-    try {
-      const characterDocSnapshot = await getDoc(characterDocRef);
-
-      if (characterDocSnapshot.exists()) {
-        return { ...characterDocSnapshot.data(), id: characterDocSnapshot.id };
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchParticipantsData = async (participants) => {
-    const promises = participants.map((participant) =>
-      getParticipantInfo(participant.owner, participant.characterId)
-    );
-
-    const participantsData = await Promise.all(promises);
-    setParticipantList(participantsData);
-  };
-  useEffect(() => {
-    if (participants.length > 0) {
-      fetchParticipantsData(participants);
-    }
-  }, [participants]);
 
   return (
     <CharactersBox

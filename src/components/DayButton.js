@@ -1,9 +1,10 @@
 import styled from "@emotion/styled/macro";
+import { MdEdit } from "react-icons/md";
 
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnCenter};
   gap: 1rem;
-  cursor: pointer;
+  cursor: ${(props) => (props.isMobile ? "pointer" : "default")};
 `;
 
 const Day = styled.div`
@@ -25,15 +26,9 @@ const Day = styled.div`
       : "transparent"};
 `;
 
-const Rally = styled.span`
-  font-size: 0.75rem;
-  color: ${(props) => props.theme.colors.primaryText};
-`;
-
 export default function DayButton({ day, selected, onClick, isMobile }) {
   const isToday = parseInt(day) === new Date().getDay();
   const isSelected = parseInt(day) === selected;
-  const rally = "08:00PM";
 
   const dayToStr = {
     0: "일",
@@ -54,7 +49,6 @@ export default function DayButton({ day, selected, onClick, isMobile }) {
       <Day selected={isSelected} today={isToday}>
         {dayToStr[day]}
       </Day>
-      <Rally>{rally}</Rally>
     </Wrapper>
   );
 }

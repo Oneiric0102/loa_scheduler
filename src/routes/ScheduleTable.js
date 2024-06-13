@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { collection, query } from "firebase/firestore";
 import { db } from "../firebase";
 import { useSnapshot } from "../hooks/useSnapshot";
+import { orderBy } from "lodash";
 
 const WeeklyTableBox = styled.div`
   display: grid;
@@ -28,10 +29,13 @@ export default function ScheduleTable() {
   const scheduleQuery = query(collection(db, "schedule"));
   const schedule = useSnapshot(scheduleQuery);
   const [selected, setSelected] = useState(new Date().getDay());
+  const [selectedDayInfo, setSelectedDayInfo] = useState(null);
   const [isMobile, setIsMobile] = useState(
     window.innerWidth >= 1000 ? false : true
   );
   const [scheduleList, setScheduleList] = useState([]);
+  const dayList = [3, 4, 5, 6, 0, 1, 2];
+  const raids = useSnapshot(query(collection(db, "raid")));
 
   //모바일버전 체크 이벤트 리스너 등록
   useEffect(() => {
@@ -60,6 +64,16 @@ export default function ScheduleTable() {
     );
   }, [schedule]);
 
+  useEffect(() => {}, [selectedDayInfo]);
+
+  useEffect(() => {
+    if (scheduleList.length > 0) {
+      setSelectedDayInfo(
+        scheduleList.find((dayInfo) => dayInfo.day === selected)
+      );
+    }
+  }, [selected, scheduleList]);
+
   const onClickDay = (day) => {
     if (isMobile) {
       setSelected(day);
@@ -69,65 +83,47 @@ export default function ScheduleTable() {
   return (
     <>
       {isMobile ? (
-        <DayButtonDiv>
-          <DayButton
-            day={3}
-            selected={selected}
-            onClick={onClickDay}
-            isMobile={true}
-          />
-          <DayButton
-            day={4}
-            selected={selected}
-            onClick={onClickDay}
-            isMobile={true}
-          />
-          <DayButton
-            day={5}
-            selected={selected}
-            onClick={onClickDay}
-            isMobile={true}
-          />
-          <DayButton
-            day={6}
-            selected={selected}
-            onClick={onClickDay}
-            isMobile={true}
-          />
-          <DayButton
-            day={0}
-            selected={selected}
-            onClick={onClickDay}
-            isMobile={true}
-          />
-          <DayButton
-            day={1}
-            selected={selected}
-            onClick={onClickDay}
-            isMobile={true}
-          />
-          <DayButton
-            day={2}
-            selected={selected}
-            onClick={onClickDay}
-            isMobile={true}
-          />
-        </DayButtonDiv>
-      ) : null}
-
-      <WeeklyTableBox>
-        {schedule.length > 0
-          ? schedule.map((dayInfo) => {
+        <>
+          <DayButtonDiv>
+            {dayList.map((day) => {
               return (
-                <DailyTable
-                  key={dayInfo.day}
-                  dayInfo={dayInfo}
-                  isMobile={isMobile}
+                <DayButton
+                  day={day}
+                  selected={selected}
+                  onClick={onClickDay}
+                  isMobile={true}
+                  key={day}
                 />
               );
-            })
-          : null}
-      </WeeklyTableBox>
+            })}
+          </DayButtonDiv>
+          {selectedDayInfo !== null ? (
+            <DailyTable
+              raids={raids}
+              scheduleList={scheduleList}
+              dayInfo={selectedDayInfo}
+              key={selectedDayInfo.day}
+              isMobile={isMobile}
+            />
+          ) : null}
+        </>
+      ) : (
+        <WeeklyTableBox>
+          {scheduleList.length > 0
+            ? scheduleList.map((dayInfo) => {
+                return (
+                  <DailyTable
+                    raids={raids}
+                    scheduleList={scheduleList}
+                    key={dayInfo.day}
+                    dayInfo={dayInfo}
+                    isMobile={isMobile}
+                  />
+                );
+              })
+            : null}
+        </WeeklyTableBox>
+      )}
     </>
   );
 }

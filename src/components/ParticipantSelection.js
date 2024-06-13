@@ -64,7 +64,7 @@ const ParticipantSelection = ({
     getCharacters();
   }, [playerId]);
 
-  //캐릭터목록 변경 후 characterId 재설정 및 characterOption 변경
+  //캐릭터목록 변경 후 characterOption 변경
   useEffect(() => {
     setCharacterOptions(
       characters.map((character) => ({

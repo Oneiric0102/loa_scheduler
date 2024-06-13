@@ -9,10 +9,12 @@ import PlayerForm from "./PlayerForm";
 import { useEffect } from "react";
 import { useState } from "react";
 import PartyForm from "./PartyForm";
+import ScheduleForm from "./ScheduleForm";
 
 export const modals = {
   player: PlayerForm,
   party: PartyForm,
+  schedule: ScheduleForm,
 };
 
 const modalStyles = {

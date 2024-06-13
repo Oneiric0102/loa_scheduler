@@ -10,6 +10,7 @@ const theme = {
     surface: "rgba(238, 240, 255, 1)",
     primaryText: "rgba(16, 39, 90, 1)",
     secondaryText: "rgba(154, 168, 199, 1)",
+    secondaryTextHover: "rgba(123, 138, 176, 1)",
     border: "rgba(143, 153, 235, 1)",
     delete: "rgba(246, 102, 76, 1)",
     deleteHover: "rgba(236, 125, 102, 1)",

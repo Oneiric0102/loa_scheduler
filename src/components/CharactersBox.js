@@ -1,11 +1,7 @@
-import { collection, deleteDoc, doc, orderBy, query } from "firebase/firestore";
 import Character from "./Character";
-import { useSnapshot } from "../hooks/useSnapshot";
 import styled from "@emotion/styled/macro";
 import { MdEdit, MdDelete } from "react-icons/md";
 import useModals from "../hooks/useModals";
-import { modals } from "./Modals";
-import { db } from "../firebase";
 
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnCenterTop};
