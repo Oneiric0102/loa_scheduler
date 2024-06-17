@@ -13,19 +13,19 @@ import Modals from "./components/Modals";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/loa_scheduler",
     element: <Layout />,
     children: [
       {
-        path: "/",
-        element: <Navigate to="/schedule" />,
+        path: "/loa_scheduler/",
+        element: <Navigate to="/loa_scheduler/schedule" />,
       },
       {
-        path: "/schedule",
+        path: "/loa_scheduler/schedule",
         element: <ScheduleTable />,
       },
       {
-        path: "/party",
+        path: "/loa_scheduler/party",
         element: <PartyInfo />,
       },
     ],

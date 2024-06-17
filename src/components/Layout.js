@@ -31,7 +31,7 @@ export default function Layout() {
   return (
     <Wrapper>
       <HeaderDiv>
-        <Title>Scheduler</Title>
+        <Title>Loa Scheduler</Title>
         <ButtonDiv>
           <HeaderButton id="schedule" location={location} />
           <HeaderButton id="party" location={location} />
