@@ -1,16 +1,27 @@
 {
   "files": {
-    "main.css": "/loa_scheduler/static/css/main.4f47a20b.css",
-    "main.js": "/loa_scheduler/static/js/main.bb8bac78.js",
+    "main.css": "/loa_scheduler/static/css/main.e6c13ad2.css",
+    "main.js": "/loa_scheduler/static/js/main.4dd6658c.js",
     "static/js/453.2f4e9aa8.chunk.js": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js",
-    "static/media/PretendardVariable.ttf": "/loa_scheduler/static/media/PretendardVariable.c89dc775feed56569658.ttf",
+    "static/media/10_더줘콩.png": "/loa_scheduler/static/media/10_더줘콩.33b04f09a80e719aa9c5.png",
+    "static/media/11_뿅콩.png": "/loa_scheduler/static/media/11_뿅콩.3632abab160b374c3013.png",
+    "static/media/08_츄릅콩.png": "/loa_scheduler/static/media/08_츄릅콩.89906c05bb55ad14dcd1.png",
+    "static/media/02_촉촉콩.png": "/loa_scheduler/static/media/02_촉촉콩.33f3933422e34b407278.png",
+    "static/media/03_노래콩.png": "/loa_scheduler/static/media/03_노래콩.1dbf3d9fc892a6495a87.png",
+    "static/media/01_물줘콩.png": "/loa_scheduler/static/media/01_물줘콩.d63764e366c15bf3dbfa.png",
+    "static/media/06_잘자콩.png": "/loa_scheduler/static/media/06_잘자콩.182498e4c80cc0c0449e.png",
+    "static/media/09_씨익콩.png": "/loa_scheduler/static/media/09_씨익콩.f2ce7b0300e1c0871153.png",
+    "static/media/05_꺼억콩.png": "/loa_scheduler/static/media/05_꺼억콩.8678d406aab00fa912fc.png",
+    "static/media/04_냠냠콩.png": "/loa_scheduler/static/media/04_냠냠콩.0cdcea93d3b71e237f15.png",
+    "static/media/12_감사콩.png": "/loa_scheduler/static/media/12_감사콩.a76b21128514ca0b40a3.png",
+    "static/media/07_도망콩.png": "/loa_scheduler/static/media/07_도망콩.6362992ab1f7708d24fc.png",
     "index.html": "/loa_scheduler/index.html",
-    "main.4f47a20b.css.map": "/loa_scheduler/static/css/main.4f47a20b.css.map",
-    "main.bb8bac78.js.map": "/loa_scheduler/static/js/main.bb8bac78.js.map",
+    "main.e6c13ad2.css.map": "/loa_scheduler/static/css/main.e6c13ad2.css.map",
+    "main.4dd6658c.js.map": "/loa_scheduler/static/js/main.4dd6658c.js.map",
     "453.2f4e9aa8.chunk.js.map": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f47a20b.css",
-    "static/js/main.bb8bac78.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.4dd6658c.js"
   ]
 }
