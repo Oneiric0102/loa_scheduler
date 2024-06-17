@@ -17,18 +17,16 @@ import {
 } from "react-icons/md";
 import styled from "@emotion/styled/macro";
 import { modals } from "./Modals";
-import CharactersBox from "./CharactersBox";
 import Character from "./Character";
 import useModals from "../hooks/useModals";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { css } from "@emotion/react";
 
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnCenterTop};
   gap: 1rem;
   width: 100%;
   flex-shrink: 0;
-  overflow: hidden;
-  ${(props) => (props.isDone ? "max-height: 1.4rem;" : "")};
-  transition: max-height 1s ease;
 `;
 
 const Characters = styled.div`
@@ -51,14 +49,12 @@ const Title = styled.div`
   color: ${(props) =>
     props.isDone ? props.theme.colors.primary40 : props.theme.colors.primary};
   text-decoration: ${(props) => (props.isDone ? "line-through;" : "none")};
-  transition: all 0.1s ease-out;
 `;
 
 const TitleWrapper = styled.div`
   ${(props) => props.theme.flex.rowCenter};
   gap: 1rem;
 `;
-
 const NullDiv = styled.div`
   ${(props) => props.theme.flex.columnCenter};
   width: 100%;
@@ -84,6 +80,30 @@ const Icon = styled.div`
   transition: color 0.1s ease-out;
 `;
 
+const transitionStyles = {
+  entering: (maxHeight) => ({
+    maxHeight: maxHeight,
+  }),
+  entered: (maxHeight) => ({
+    maxHeight: maxHeight,
+  }),
+  exiting: (maxHeight) => ({
+    maxHeight: "0",
+  }),
+  exited: (maxHeight) => ({
+    maxHeight: "0",
+  }),
+};
+
+const duration = 300;
+
+// 트랜지션 기본 스타일 객체
+const defaultStyle = {
+  transition: `max-height ${duration}ms ease-in-out`,
+  maxHeight: "0",
+  overflow: "hidden",
+};
+
 const dayNumToId = {
   0: "sunday",
   1: "monday",
@@ -98,6 +118,7 @@ const Schedule = ({ dayInfo, raids, scheduleList, daySchedule }) => {
   const [scheduleName, setScheduleName] = useState("");
   const [participants, setParticipants] = useState(null);
   const [isDone, setDone] = useState(daySchedule.isDone);
+  const [maxHeight, setMaxHeight] = useState(0);
   const participantList = usePartyInfo(participants);
   const modalProps = {
     dayNum: parseInt(dayInfo.day),
@@ -150,10 +171,16 @@ const Schedule = ({ dayInfo, raids, scheduleList, daySchedule }) => {
       daySchedule.party
     );
   }, [daySchedule]);
-  useEffect(() => {
-    console.log(participants);
-  }, [participants]);
 
+  useEffect(() => {
+    if (
+      participantList !== null &&
+      participantList !== undefined &&
+      participantList.length > 0
+    ) {
+      setMaxHeight(`${participantList.length * 12.5 + 1}rem`);
+    }
+  }, [participantList]);
   const changeDone = () => {
     setDone((current) => !current);
   };
@@ -181,7 +208,7 @@ const Schedule = ({ dayInfo, raids, scheduleList, daySchedule }) => {
   };
 
   return (
-    <Wrapper isDone={isDone}>
+    <Wrapper>
       <Title isDone={isDone}>
         <TitleWrapper>
           <Icon onClick={changeDone}>
@@ -198,22 +225,35 @@ const Schedule = ({ dayInfo, raids, scheduleList, daySchedule }) => {
           </Icon>
         </Icons>
       </Title>
-      <Characters>
-        {participantList.length > 0 ? (
-          participantList.map((participant) => {
-            const characterInfo = {
-              nickname: participant.nickname,
-              level: participant.level,
-              class: participant.class,
-            };
-            return (
-              <Character characterInfo={characterInfo} key={participant.id} />
-            );
-          })
-        ) : (
-          <NullDiv>오류</NullDiv>
+      <CSSTransition in={!isDone} timeout={duration} unmountOnExit>
+        {(state) => (
+          <Characters
+            style={{
+              ...defaultStyle,
+              ...transitionStyles[state](maxHeight),
+            }}
+            maxHeight={maxHeight}
+          >
+            {participantList.length > 0 ? (
+              participantList.map((participant) => {
+                const characterInfo = {
+                  nickname: participant.nickname,
+                  level: participant.level,
+                  class: participant.class,
+                };
+                return (
+                  <Character
+                    characterInfo={characterInfo}
+                    key={daySchedule.party + participant.id}
+                  />
+                );
+              })
+            ) : (
+              <NullDiv>캐릭터 정보가 없습니다.</NullDiv>
+            )}
+          </Characters>
         )}
-      </Characters>
+      </CSSTransition>
     </Wrapper>
   );
 };

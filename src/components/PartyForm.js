@@ -225,7 +225,6 @@ const PartyForm = ({ onSubmit, onClose, players, party, participants }) => {
         //문서가 삭제목록에 있다면 문서를 삭제
         if (participantDoc.exists() && deleteList.includes(participantId)) {
           batch.delete(participantDocRef);
-          console.log("삭제");
         }
         //삭제가 아닌경우
         else {

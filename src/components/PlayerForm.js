@@ -18,6 +18,7 @@ import {
 } from "firebase/firestore";
 import { debounce } from "lodash";
 import { useSnapshot } from "../hooks/useSnapshot";
+import { deleteCharacter } from "../utils";
 
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnLeftCenter};
@@ -245,7 +246,7 @@ const PlayerForm = ({ player, characters, onSubmit, onClose }) => {
         console.log(data);
         //문서가 삭제목록에 있다면 문서를 삭제
         if (characterDoc.exists() && deleteList.includes(characterId)) {
-          batch.delete(characterDocRef);
+          deleteCharacter(player.id, character.id);
           console.log(`문서가 삭제되었습니다. 문서 ID: ${characterId}`);
         }
         //삭제가 아닌경우

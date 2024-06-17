@@ -218,8 +218,6 @@ const ScheduleForm = ({
       isDone: isDone,
     };
 
-    console.log(data);
-
     const daySchedulesRef = collection(
       scheduleList.find((schedule) => schedule.day === dayNum).ref,
       "daySchedules"
@@ -231,19 +229,20 @@ const ScheduleForm = ({
     const dayScheduleDocRef = doc(daySchedulesRef, daySchedule.id);
     const dayScheduleDoc = await getDoc(dayScheduleDocRef);
     if (day === dayNum) {
-      console.log("요일일치");
       if (dayScheduleDoc.exists()) {
         updateDoc(dayScheduleDocRef, data);
       } else {
         addDoc(daySchedulesRef, data);
       }
-      if (day !== dayNum) {
-        console.log("요일불일치");
-        if (dayScheduleDoc.exists()) {
-          deleteDoc(dayScheduleDocRef, data);
-        }
-        addDoc(updateSchedulesRef, data);
+    }
+    if (day !== dayNum) {
+      console.log("요일불일치");
+      if (dayScheduleDoc.exists()) {
+        console.log("기존문서존재");
+
+        deleteDoc(dayScheduleDocRef, data);
       }
+      addDoc(updateSchedulesRef, data);
     }
   };
   return (

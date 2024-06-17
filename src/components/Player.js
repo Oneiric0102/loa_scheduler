@@ -3,6 +3,7 @@ import { useSnapshot } from "../hooks/useSnapshot";
 import { modals } from "./Modals";
 import { db } from "../firebase";
 import CharactersBox from "./CharactersBox";
+import { deletePlayer } from "../utils";
 
 export default function Player({ player }) {
   const charactersQuery = query(
@@ -13,9 +14,9 @@ export default function Player({ player }) {
 
   const modalProps = { player: player, characters: characters };
 
-  const deletePlayer = () => {
+  const onClickDelete = () => {
     if (window.confirm("플레이어를 삭제하시겠습니까?")) {
-      deleteDoc(doc(db, "players", player.id));
+      deletePlayer(player.id);
     }
   };
 
@@ -25,7 +26,7 @@ export default function Player({ player }) {
       characters={characters}
       modalRef={modals.player}
       modalProps={modalProps}
-      deleteFn={deletePlayer}
+      deleteFn={onClickDelete}
       nullStr="캐릭터 정보가 없습니다."
     />
   );

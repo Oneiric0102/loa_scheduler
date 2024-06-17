@@ -12,6 +12,7 @@ import { db } from "../firebase";
 import CharactersBox from "./CharactersBox";
 import { useEffect, useState } from "react";
 import { usePartyInfo } from "../hooks/usePartyInfo";
+import { deleteParty } from "../utils";
 
 export default function Party({ players, party }) {
   const participantsQuery = query(collection(party.ref, "participants"));
@@ -24,9 +25,9 @@ export default function Party({ players, party }) {
     participants: participants,
   };
 
-  const deleteParty = () => {
+  const onClickDelete = () => {
     if (window.confirm("파티를 삭제하시겠습니까?")) {
-      deleteDoc(doc(db, "parties", party.id));
+      deleteParty(party.id);
     }
   };
 
@@ -36,8 +37,8 @@ export default function Party({ players, party }) {
       characters={participantList}
       modalRef={modals.party}
       modalProps={modalProps}
-      deleteFn={deleteParty}
-      nullStr="파티 정보가 없습니다."
+      deleteFn={onClickDelete}
+      nullStr="캐릭터 정보가 없습니다."
     />
   );
 }
