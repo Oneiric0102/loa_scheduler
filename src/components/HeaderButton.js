@@ -30,7 +30,7 @@ export default function HeaderButton({ id, children, location }) {
   };
 
   const onClickBtn = () => {
-    navigate("/loa_scheduler/" + id);
+    navigate("/" + id);
   };
 
   useEffect(() => {
