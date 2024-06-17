@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/loa_scheduler/static/css/main.e6c13ad2.css",
-    "main.js": "/loa_scheduler/static/js/main.4dd6658c.js",
+    "main.js": "/loa_scheduler/static/js/main.633fd4e6.js",
     "static/js/453.2f4e9aa8.chunk.js": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js",
     "static/media/10_더줘콩.png": "/loa_scheduler/static/media/10_더줘콩.33b04f09a80e719aa9c5.png",
     "static/media/11_뿅콩.png": "/loa_scheduler/static/media/11_뿅콩.3632abab160b374c3013.png",
@@ -17,11 +17,11 @@
     "static/media/07_도망콩.png": "/loa_scheduler/static/media/07_도망콩.6362992ab1f7708d24fc.png",
     "index.html": "/loa_scheduler/index.html",
     "main.e6c13ad2.css.map": "/loa_scheduler/static/css/main.e6c13ad2.css.map",
-    "main.4dd6658c.js.map": "/loa_scheduler/static/js/main.4dd6658c.js.map",
+    "main.633fd4e6.js.map": "/loa_scheduler/static/js/main.633fd4e6.js.map",
     "453.2f4e9aa8.chunk.js.map": "/loa_scheduler/static/js/453.2f4e9aa8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.4dd6658c.js"
+    "static/js/main.633fd4e6.js"
   ]
 }
