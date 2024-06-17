@@ -1,4 +1,3 @@
-import weekInfoJSON from "../table/odd.json";
 import DailyTable from "../components/DailyTable";
 import styled from "@emotion/styled/macro";
 import DayButton from "../components/DayButton";
@@ -6,15 +5,34 @@ import { useEffect, useState } from "react";
 import { collection, query } from "firebase/firestore";
 import { db } from "../firebase";
 import { useSnapshot } from "../hooks/useSnapshot";
-import { orderBy } from "lodash";
+import { useMobileContext } from "../context/MobileContext";
 
 const WeeklyTableBox = styled.div`
   display: grid;
   grid-template-columns: repeat(7, minmax(12rem, 1fr));
-  justify-content: center;
+  justify-content: start;
   align-content: start;
   grid-gap: 1rem;
-  @media (max-width: 1000px) {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  &::-webkit-scrollbar {
+    height: 0.2rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${(props) => props.theme.colors.scrollTrack};
+    border-radius: 0.1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme.colors.scrollThumb};
+    border-radius: 0.1rem;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${(props) => props.theme.colors.primary40};
+  }
+  @media (max-width: 520px) {
     ${(props) => props.theme.flex.columnCenterTop};
   }
 `;
@@ -30,29 +48,11 @@ export default function ScheduleTable() {
   const schedule = useSnapshot(scheduleQuery);
   const [selected, setSelected] = useState(new Date().getDay());
   const [selectedDayInfo, setSelectedDayInfo] = useState(null);
-  const [isMobile, setIsMobile] = useState(
-    window.innerWidth >= 1000 ? false : true
-  );
+
   const [scheduleList, setScheduleList] = useState([]);
   const dayList = [3, 4, 5, 6, 0, 1, 2];
   const raids = useSnapshot(query(collection(db, "raid")));
-
-  //모바일버전 체크 이벤트 리스너 등록
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1000) {
-        setIsMobile(false);
-      } else if (window.innerWidth < 1000) {
-        setIsMobile(true);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const isMobile = useMobileContext();
 
   useEffect(() => {
     setScheduleList(

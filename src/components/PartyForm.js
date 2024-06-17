@@ -101,7 +101,7 @@ const PartyForm = ({ onSubmit, onClose, players, party, participants }) => {
         : true,
     }));
     setParticipantList(addedRegister);
-  }, []);
+  }, [participants]);
 
   const updateParticipantInfo = (id, updatedInfo) => {
     setParticipantList((prevList) =>
@@ -145,13 +145,13 @@ const PartyForm = ({ onSubmit, onClose, players, party, participants }) => {
     console.log("partyDel");
     if (registered) {
       if (beDelete) {
-        setDeleteList((current) => current.filter((delId) => delId != id));
+        setDeleteList((current) => current.filter((delId) => delId !== id));
       } else {
         setDeleteList((current) => [...current, id]);
       }
     } else {
       setParticipantList((current) =>
-        current.filter((participant) => participant.id != id)
+        current.filter((participant) => participant.id !== id)
       );
     }
   };

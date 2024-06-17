@@ -13,7 +13,6 @@ import {
 } from "firebase/firestore";
 import { orderBy } from "lodash";
 import { db } from "../firebase";
-import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnLeftCenter};
@@ -58,17 +57,6 @@ const SelectBox = styled.div`
   width: 100%;
 `;
 
-const Icon = styled.div`
-  ${(props) => props.theme.flex.rowCenter};
-  color: ${(props) => props.theme.colors.primary};
-  &:hover {
-    color: ${(props) => props.theme.colors.primaryHover};
-  }
-  cursor: pointer;
-  font-size: 1.5rem;
-  transition: color 0.1s ease-out;
-`;
-
 const ScheduleForm = ({
   onSubmit,
   onClose,
@@ -110,7 +98,7 @@ const ScheduleForm = ({
 
   //레이드 옵션 변경 시 난이도 리스트 가져오는 함수
   const getDifficultyList = async () => {
-    if (raidId != "") {
+    if (raidId !== "") {
       const selectedRaid = raids.find((raid) => raid.id === raidId);
 
       const difficultyQuery = query(
@@ -193,9 +181,6 @@ const ScheduleForm = ({
   };
   const changeParty = (selectedOption) => {
     setPartyId(selectedOption.value);
-  };
-  const changeDone = () => {
-    setDone((current) => !current);
   };
 
   //firebase store 스케줄 업데이트 함수

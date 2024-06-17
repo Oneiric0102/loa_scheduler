@@ -1,7 +1,6 @@
-import { collection, deleteDoc, doc, orderBy, query } from "firebase/firestore";
+import { collection, orderBy, query } from "firebase/firestore";
 import { useSnapshot } from "../hooks/useSnapshot";
 import { modals } from "./Modals";
-import { db } from "../firebase";
 import CharactersBox from "./CharactersBox";
 import { deletePlayer } from "../utils";
 

@@ -1,18 +1,20 @@
 import { Outlet, useLocation } from "react-router-dom";
 import HeaderButton from "./HeaderButton";
 import styled from "@emotion/styled/macro";
+import { useEffect } from "react";
+import { useMobileContext } from "../context/MobileContext";
 
 const Wrapper = styled.div`
-  margin: 0 2rem;
+  margin: ${(props) => (props.isMobile ? "0 0.5rem" : "0 2rem")};
 `;
 
 const HeaderDiv = styled.header`
-  ${(props) => props.theme.flex.rowBetweenBottom};
+  ${(props) =>
+    props.isMobile
+      ? props.theme.flex.columnLeftCenter
+      : props.theme.flex.rowBetweenBottom};
+  ${(props) => (props.isMobile ? "gap: 1rem;" : "")};
   margin: 2rem 0;
-  @media (max-width: 1000px) {
-    ${(props) => props.theme.flex.columnLeftCenter};
-    gap: 1rem;
-  }
 `;
 
 const Title = styled.h1`
@@ -28,9 +30,13 @@ const ButtonDiv = styled.div`
 
 export default function Layout() {
   const location = useLocation();
+  const isMobile = useMobileContext();
+  useEffect(() => {
+    console.log(isMobile);
+  }, [isMobile]);
   return (
-    <Wrapper>
-      <HeaderDiv>
+    <Wrapper isMobile={isMobile}>
+      <HeaderDiv isMobile={isMobile}>
         <Title>Loa Scheduler</Title>
         <ButtonDiv>
           <HeaderButton id="schedule" location={location} />

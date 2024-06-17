@@ -19,8 +19,7 @@ import styled from "@emotion/styled/macro";
 import { modals } from "./Modals";
 import Character from "./Character";
 import useModals from "../hooks/useModals";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { css } from "@emotion/react";
+import { CSSTransition } from "react-transition-group";
 
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnCenterTop};
@@ -104,28 +103,13 @@ const defaultStyle = {
   overflow: "hidden",
 };
 
-const dayNumToId = {
-  0: "sunday",
-  1: "monday",
-  2: "tuesday",
-  3: "wednesday",
-  4: "thursday",
-  5: "friday",
-  6: "saturday",
-};
-
 const Schedule = ({ dayInfo, raids, scheduleList, daySchedule }) => {
   const [scheduleName, setScheduleName] = useState("");
   const [participants, setParticipants] = useState(null);
   const [isDone, setDone] = useState(daySchedule.isDone);
   const [maxHeight, setMaxHeight] = useState(0);
   const participantList = usePartyInfo(participants);
-  const modalProps = {
-    dayNum: parseInt(dayInfo.day),
-    raids: raids,
-    scheduleList: scheduleList,
-    daySchedule: daySchedule,
-  };
+
   const { openModal } = useModals();
 
   //스케줄 정보를 얻어오는 함수
@@ -188,7 +172,7 @@ const Schedule = ({ dayInfo, raids, scheduleList, daySchedule }) => {
   //완료여부를 db에 업데이트
   useEffect(() => {
     updateDoc(daySchedule.ref, { isDone: isDone });
-  }, [isDone]);
+  }, [isDone, daySchedule]);
 
   const deleteSchedule = () => {
     console.log(dayInfo.id);

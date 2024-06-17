@@ -1,16 +1,7 @@
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  orderBy,
-  query,
-} from "firebase/firestore";
+import { collection, query } from "firebase/firestore";
 import { useSnapshot } from "../hooks/useSnapshot";
 import { modals } from "./Modals";
-import { db } from "../firebase";
 import CharactersBox from "./CharactersBox";
-import { useEffect, useState } from "react";
 import { usePartyInfo } from "../hooks/usePartyInfo";
 import { deleteParty } from "../utils";
 

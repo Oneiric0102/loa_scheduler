@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import DelButton from "./DelButton";
 import CustomSelect from "./CustomSelect";
+import { useMobileContext } from "../context/MobileContext";
 
 const CharacterBox = styled.div`
   ${(props) => props.theme.flex.columnLeftCenter};
@@ -10,7 +11,7 @@ const CharacterBox = styled.div`
   width: 100%;
 `;
 const CharacterName = styled.input`
-  width: calc(100% - 5rem);
+  width: ${(props) => (props.isMobile ? "100%" : "calc(100% - 5rem)")};
   border: 2px solid transparent;
   background-color: ${(props) => props.theme.colors.surface};
   border-radius: 0.5rem;
@@ -25,7 +26,13 @@ const CharacterName = styled.input`
 const RowWrapper = styled.div`
   ${(props) => props.theme.flex.rowLeftCenter};
   gap: 0.5rem;
-  width: calc(100%);
+  width: 100%;
+`;
+
+const MobileWrapper = styled.div`
+  ${(props) => props.theme.flex.columnLeftCenter};
+  gap: 0.5rem;
+  width: 100%;
 `;
 
 const GridWrapper = styled.div`
@@ -45,9 +52,12 @@ const CharacterLevel = styled.input`
     border: 2px solid ${(props) => props.theme.colors.primary};
     outline: none;
   }
+  ${(props) => (props.isMobile ? "width:100%" : "")};
 `;
 
-const SelectContainer = styled.div``;
+const SelectContainer = styled.div`
+  width: 100%;
+`;
 
 const groupCDToString = [
   "",
@@ -72,6 +82,7 @@ export default function CharacterInput({
   const id = characterInfo.id;
   const registered = characterInfo.registered;
   const [classOptions, setClassOptions] = useState([]);
+  const isMobile = useMobileContext();
 
   //클래스리스트 옵션 초기화
   useEffect(() => {
@@ -118,36 +129,72 @@ export default function CharacterInput({
   };
   return (
     <CharacterBox>
-      <RowWrapper>
-        <CharacterName
-          placeholder="닉네임"
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
-        />
-        <DelButton
-          registered={registered}
-          beDelete={beDelete}
-          onClick={deleteInput}
-        />
-      </RowWrapper>
-      <GridWrapper>
-        <CharacterLevel
-          placeholder="레벨"
-          value={level}
-          onChange={(e) => setLevel(e.target.value)}
-        />
-        <SelectContainer>
-          <CustomSelect
-            value={classOptions
-              .flatMap((option) => option.options)
-              .find((option) => option.value === characterClass)}
-            onChange={changeClass}
-            placeholder={"직업"}
-            options={classOptions}
+      {isMobile ? (
+        <MobileWrapper>
+          <CharacterName
+            placeholder="닉네임"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+            isMobile={isMobile}
           />
-        </SelectContainer>
-      </GridWrapper>
-      <SelectContainer></SelectContainer>
+          <CharacterLevel
+            placeholder="레벨"
+            value={level}
+            onChange={(e) => setLevel(e.target.value)}
+            isMobile={isMobile}
+          />
+          <RowWrapper>
+            <SelectContainer>
+              <CustomSelect
+                value={classOptions
+                  .flatMap((option) => option.options)
+                  .find((option) => option.value === characterClass)}
+                onChange={changeClass}
+                placeholder={"직업"}
+                options={classOptions}
+              />
+            </SelectContainer>
+            <DelButton
+              registered={registered}
+              beDelete={beDelete}
+              onClick={deleteInput}
+            />
+          </RowWrapper>
+        </MobileWrapper>
+      ) : (
+        <>
+          <RowWrapper>
+            <CharacterName
+              placeholder="닉네임"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+            <DelButton
+              registered={registered}
+              beDelete={beDelete}
+              onClick={deleteInput}
+            />
+          </RowWrapper>
+          <GridWrapper>
+            <CharacterLevel
+              placeholder="레벨"
+              value={level}
+              onChange={(e) => setLevel(e.target.value)}
+              isMobile={isMobile}
+            />
+            <SelectContainer>
+              <CustomSelect
+                value={classOptions
+                  .flatMap((option) => option.options)
+                  .find((option) => option.value === characterClass)}
+                onChange={changeClass}
+                placeholder={"직업"}
+                options={classOptions}
+              />
+            </SelectContainer>
+          </GridWrapper>
+        </>
+      )}
     </CharacterBox>
   );
 }

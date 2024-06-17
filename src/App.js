@@ -10,35 +10,37 @@ import Layout from "./components/Layout";
 import ScheduleTable from "./routes/ScheduleTable";
 import PartyInfo from "./routes/PartyInfo";
 import Modals from "./components/Modals";
-
-const router = createBrowserRouter([
-  {
-    path: "/loa_scheduler",
-    element: <Layout />,
-    children: [
-      {
-        path: "/loa_scheduler/",
-        element: <Navigate to="/loa_scheduler/schedule" />,
-      },
-      {
-        path: "/loa_scheduler/schedule",
-        element: <ScheduleTable />,
-      },
-      {
-        path: "/loa_scheduler/party",
-        element: <PartyInfo />,
-      },
-    ],
-  },
-]);
+import MobileProvider from "./provider/MobileProvider";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/loa_scheduler",
+      element: <Layout />,
+      children: [
+        {
+          path: "/loa_scheduler/",
+          element: <Navigate to="/loa_scheduler/schedule" />,
+        },
+        {
+          path: "/loa_scheduler/schedule",
+          element: <ScheduleTable />,
+        },
+        {
+          path: "/loa_scheduler/party",
+          element: <PartyInfo />,
+        },
+      ],
+    },
+  ]);
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <RouterProvider router={router} />
-      <Modals />
-    </ThemeProvider>
+    <MobileProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+        <Modals />
+      </ThemeProvider>
+    </MobileProvider>
   );
 }
 

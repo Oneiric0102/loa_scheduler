@@ -1,5 +1,4 @@
 import styled from "@emotion/styled/macro";
-import { MdEdit } from "react-icons/md";
 
 const Wrapper = styled.div`
   ${(props) => props.theme.flex.columnCenter};
@@ -9,8 +8,8 @@ const Wrapper = styled.div`
 
 const Day = styled.div`
   ${(props) => props.theme.flex.columnCenter};
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   font-size: 1.25rem;
   font-family: ${(props) => props.theme.font.title};
   border-radius: 50%;

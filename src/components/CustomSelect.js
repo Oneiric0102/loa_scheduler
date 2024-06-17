@@ -82,6 +82,12 @@ const customStyles = (theme) => ({
     fontSize: "0.8rem",
     paddingBottom: "0.5rem",
   }),
+  placeholder: (provided) => ({
+    ...provided,
+    whiteSpace: "nowrap", // 줄바꿈 방지
+    overflow: "hidden", // 넘치는 내용 숨기기
+    textOverflow: "ellipsis", // 넘치는 내용 생략 표시
+  }),
 });
 
 const groupBadgeStyles = (theme) => ({

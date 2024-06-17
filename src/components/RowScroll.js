@@ -3,7 +3,6 @@ import styled from "@emotion/styled/macro";
 const RowScrollDiv = styled.div`
   ${(props) => props.theme.flex.rowLeftTop};
   overflow-x: auto;
-  overflow-y: hidden;
   gap: 1rem;
   margin: 1rem 0;
   padding: 1rem 0;

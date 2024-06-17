@@ -3,12 +3,17 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import DelButton from "./DelButton";
 import CustomSelect from "./CustomSelect";
+import { useMobileContext } from "../context/MobileContext";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 9rem calc(100% - 14rem) 3.5rem;
+  ${(props) =>
+    props.isMobile
+      ? "grid-template-columns: 1fr;margin-bottom: 0.5rem;"
+      : "grid-template-columns: 9rem calc(100% - 14rem) 3.5rem"};
   grid-gap: 0.5rem;
   width: 100%;
+  align-content: left;
 `;
 const ParticipantSelection = ({
   players,
@@ -24,6 +29,7 @@ const ParticipantSelection = ({
   const registered = participantInfo.registered;
   const [playerOptions, setPlayerOptions] = useState([]);
   const [characterOptions, setCharacterOptions] = useState([]);
+  const isMobile = useMobileContext();
 
   const changePlayer = (selectedOption) => {
     setPlayerId(selectedOption.value);
@@ -98,7 +104,7 @@ const ParticipantSelection = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper isMobile={isMobile}>
       <CustomSelect
         value={
           playerId === ""
